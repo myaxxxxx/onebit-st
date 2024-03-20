@@ -46,7 +46,7 @@ class SpeechAndTextTranslationCriterion(LabelSmoothedCrossEntropyCriterion):
 # load ft_model
 # add hubert
 
-        FT_MODEL="/workspace/chennan_tmp/s2t/deltalm_data/save_dir/de/pruning_layer_rate_090_finetuned_layer6_dim1/ft_model.pt"
+        FT_MODEL="/workspace/s2t/deltalm_data/save_dir/de/pruning_layer_rate_090_finetuned_layer6_dim1/ft_model.pt"
         self.hubert_model_path = FT_MODEL
 
         ckpt = checkpoint_utils.load_checkpoint_to_cpu(self.hubert_model_path)

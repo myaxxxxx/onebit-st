@@ -254,7 +254,7 @@ class HubertTransformerModel(FairseqEncoderDecoderModel):
 
         model = cls(encoder, decoder)
         
-        FT_MODEL="/workspace/chennan_tmp/s2t/deltalm_data/save_dir/de/pruning_layer_rate_090_finetuned_layer6_dim1/ft_model.pt"
+        FT_MODEL="/workspace/s2t/deltalm_data/save_dir/de/pruning_layer_rate_090_finetuned_layer6_dim1/ft_model.pt"
         pre_trained_model_path = FT_MODEL      
         state = checkpoint_utils.load_checkpoint_to_cpu(pre_trained_model_path)
         pre_trained_model = state['model']
