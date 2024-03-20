@@ -21,13 +21,13 @@ After the review period, we will open-source the code on our GitHub.
 ### Overview
 
 <div style="text-align: center">
-<img src="figures/overview.png" width = "50%"/>
+<img src="figures/overview.png" width = "40%"/>
 </div>
 
 ### SVCD Linear
 
 <div style="text-align: center">
-<img src="figures/svcd.png" width = "50%"/>
+<img src="figures/svcd.png" width = "40%"/>
 </div>
 
 ### Core Implementation Details
