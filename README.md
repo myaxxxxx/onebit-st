@@ -76,7 +76,7 @@ Forward Function
         return output
 ```
 
-initialization Function
+Constraint Initialization Function
 
 ```
     def __init__(
