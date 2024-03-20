@@ -21,7 +21,7 @@ After the review period, we will open-source the code on our GitHub.
 ### Overview
 
 <div style="text-align: center">
-<img src="figures/overview.png" width = "70%"/>
+<img src="figures/overview.png" width = "50%"/>
 </div>
 
 ### SVCD Linear
@@ -202,7 +202,6 @@ fairseq-train $data_dir --text-data $TEXT_DIR --tgt-lang $target \
 ##### SVCD 
 
 ```
-
 target=de
 cd /workspace/s2t/data/en_de
 export CUDA_VISIBLE_DEVICES=0,1
@@ -216,7 +215,6 @@ TEXT_DIR=/workspace/s2t/npy_st/mt_data_bin/en-$target/en-$target/binary
 USER_DIR=/workspace/cress_bitnet
 
 HU_BERT=/workspace/s2t/npy_st/pretrained_model_save/hubert/hubert_base_ls960.pt
-MT_PRETRAINED_MODEL=/workspace/s2t/npy_st/pretrained_model_save/mt_model_save/mt.en-de.base.pt
 
 fairseq-train $data_dir --text-data $TEXT_DIR --tgt-lang $target \
   --user-dir $USER_DIR \
@@ -231,11 +229,8 @@ fairseq-train $data_dir --text-data $TEXT_DIR --tgt-lang $target \
     --st-training --mt-finetune \
   --st-training \
   --hubert-model-path $HU_BERT \
-  --load-pretrained-mt-encoder-decoder-from $MT_PRETRAINED_MODEL --tensorboard-logdir $SAVE_DIR --disable-validation --fp16
+  --tensorboard-logdir $SAVE_DIR --disable-validation --fp16
 ```
-
-
-
 
 
 ### Acknowledgment
