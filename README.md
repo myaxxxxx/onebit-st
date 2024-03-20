@@ -101,7 +101,15 @@ Constraint Initialization Function
 ```
 
 
+### More Analysis
 
+
+
+#### Why not use the Bitnet linear layer?
+Bitnet quantizes the weight matrix without adding two additional parameter matrices. However, Bitnet cannot be trained with fp16 due to gradient leakage.
+
+#### Why add the "Constraint" to SVCD？ 
+If the two additional trainable parameter vectors are not constrained, the model will still also experience gradient leakage during the first round of training when trained with FP16.
 
 ### Installations
 
@@ -200,7 +208,7 @@ fairseq-train $data_dir --text-data $TEXT_DIR --tgt-lang $target \
 
 
 ##### SVCD 
-
+SVCD needs to be further trained based on a pre-trained speech translation model.
 ```
 target=de
 cd /workspace/s2t/data/en_de
