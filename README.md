@@ -30,7 +30,7 @@ After the review period, we will open-source the code on our GitHub.
 <img src="figures/svcd.png" width = "40%"/>
 </div>
 
-### Core Implementation Details
+### Key Implementation Details
 
 
 - Step 1, the input ***x*** is multiplied by the ***g*** vector (Hadamard product) `cress_bitnet\models\bit_linear.py Line 127`;
