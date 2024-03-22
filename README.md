@@ -39,6 +39,25 @@ After the review period, we will open-source the code on our GitHub.
 - Step 4 Generate Outputs `cress_bitnet\models\bit_linear.py Line 137 `;
 
 
+
+### More Analysis
+
+
+#### Comparsion of SVCD Constraint
+We compare model initialization using constraints and without constraints and present the experimental results (see Figure). When the initialization method without constraints is used, the model is prone to stopping training due to excessive gradient leakage in the FP16 training mode.
+
+<div style="text-align: center">
+<img src="figures/comparsion_constraint.png" width = "40%"/>
+</div>
+
+
+#### Why not use the Bitnet linear layer?
+Bitnet quantizes the weight matrix without adding two additional parameter matrices. However, Bitnet cannot be trained with fp16 due to gradient leakage.
+
+#### Why add the "Constraint" to SVCD？ 
+If the two additional trainable parameter vectors are not constrained, the model will still also experience gradient leakage during the first round of training when trained with FP16.
+
+
 #### Core Codes
 
 Forward Function
@@ -93,24 +112,6 @@ Constraint Initialization Function
         torch.nn.init.uniform_(self.g, -bound, bound)
         torch.nn.init.uniform_(self.h, -bound, bound)
 ```
-
-
-### More Analysis
-
-
-#### Comparsion of SVCD Constraint
-We compare model initialization using constraints and without constraints and present the experimental results (see Figure). When the initialization method without constraints is used, the model is prone to stopping training due to excessive gradient leakage in the FP16 training mode.
-
-<div style="text-align: center">
-<img src="figures/comparsion_constraint.png" width = "40%"/>
-</div>
-
-
-#### Why not use the Bitnet linear layer?
-Bitnet quantizes the weight matrix without adding two additional parameter matrices. However, Bitnet cannot be trained with fp16 due to gradient leakage.
-
-#### Why add the "Constraint" to SVCD？ 
-If the two additional trainable parameter vectors are not constrained, the model will still also experience gradient leakage during the first round of training when trained with FP16.
 
 ### Installations
 
