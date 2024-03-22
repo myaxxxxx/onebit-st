@@ -51,11 +51,21 @@ We compare model initialization using constraints and without constraints and pr
 </div>
 
 
+
+
 #### Why not use the Bitnet linear layer?
 Bitnet quantizes the weight matrix without adding two additional parameter matrices. However, Bitnet cannot be trained with fp16 due to gradient leakage.
 
 #### Why add the "Constraint" to SVCD？ 
 If the two additional trainable parameter vectors are not constrained, the model will still also experience gradient leakage during the first round of training when trained with FP16.
+
+
+#### Comparsion of SVCD and SVD Initialization
+For the two additional trainable vectors, ***g*** and ***h***, we compare our method with the SVD initialization. In the SVD initialization method, we decompose the weight matrix **W** of the linear layer into matrices **U** and **V**. Then, we select rank-1 vectors from each matrix for initializing ***g*** and ***h***, respectively. As shown in the experimental results in the figure, the loss using the SVD initialization method is significantly higher than with our method, indicating that the SVD initialization method does not achieve the expected effect.
+
+<div style="text-align: center">
+<img src="figures/svd_comparsion.png" width = "40%"/>
+</div>
 
 
 #### Core Codes
