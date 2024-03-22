@@ -97,6 +97,15 @@ Constraint Initialization Function
 
 ### More Analysis
 
+
+#### Comparsion of SVCD Constraint
+We compare model initialization using constraints and without constraints and present the experimental results (see Figure). When the initialization method without constraints is used, the model is prone to stopping training due to excessive gradient leakage in the FP16 training mode.
+
+<div style="text-align: center">
+<img src="figures/comparsion_constraint.png" width = "40%"/>
+</div>
+
+
 #### Why not use the Bitnet linear layer?
 Bitnet quantizes the weight matrix without adding two additional parameter matrices. However, Bitnet cannot be trained with fp16 due to gradient leakage.
 
