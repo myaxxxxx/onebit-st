@@ -48,21 +48,16 @@ Forward Function
     def forward(self, x: Tensor) -> Tensor:
         """
         Forward pass of the BitLinear layer.
-
         Args:
             x (Tensor): Input tensor.
-
         Returns:
             Tensor: Output tensor.
         """
         # Normalize input
         x = self.norm(x)
+        x = x * self.g
 
         # Binarize weights and quantize activations
-        
-
-        x = x * self.g
-        
         binarized_weights = self.binarize_weights_groupwise()
 
         # Perform linear transformation
@@ -70,9 +65,8 @@ Forward Function
 
         # Quantize activations
         output = self.quantize_activations_groupwise(output)
-        
         output = output * self.h
-
+        
         return output
 ```
 
@@ -102,8 +96,6 @@ Constraint Initialization Function
 
 
 ### More Analysis
-
-
 
 #### Why not use the Bitnet linear layer?
 Bitnet quantizes the weight matrix without adding two additional parameter matrices. However, Bitnet cannot be trained with fp16 due to gradient leakage.
