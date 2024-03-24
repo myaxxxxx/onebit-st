@@ -43,6 +43,40 @@ After the review period, we will open-source the code on our GitHub.
 ### More Analysis
 
 
+#### Submodule Performance in Decoder Cross-Attention
+
+
+
+We further investigate the quantization effects of the cross-attention sub-modules in the decoder module. We quantify the decoder's cross-attention module's query, key, value, and output linear layers. The experimental results, as shown in the table below, indicate that all sub-modules significantly impact the model's performance. Among them, the value and output linear layers have a more significant impact than the query and key linear layers.
+
+
+<style>
+.center 
+{
+  width: auto;
+  display: table;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+
+<p align="center"><font face="黑体" size=2.></font></p>
+
+<div class="center">
+
+|       |     |       |     | En-De | En-Ro |
+|:-----:|:---:|:-----:|:---:|:-----:|:-----:|
+| Query Linear| Key Linear | Value Linear | Out Linear |   -   |   -   |
+|  &#x2714;     |     |       |     |  6.78 |  7.33 |
+|       |  &#x2714;   |       |     |  9.84 |  9.14 |
+|       |     |      &#x2714;  |    |  0.0  |  0.10 |
+|       |     |       |    &#x2714; |  0.40 |  0.04 |
+
+</div>
+
+
+
+
 #### Comparsion of SVCD Constraint
 We compare model initialization using constraints and without constraints and present the experimental results (see Figure). When the initialization method without constraints is used, the model is prone to stopping training due to excessive gradient leakage in the FP16 training mode.
 
