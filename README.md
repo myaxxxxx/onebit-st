@@ -36,7 +36,7 @@ After the review period, we will open-source the code on our GitHub.
 - Step 1, the input ***x*** is multiplied by the ***g*** vector (Hadamard product) `cress_bitnet\models\bit_linear.py Line 127`;
 - Step 2, Perform linear transformation `cress_bitnet\models\bit_linear.py Line 132`;
 - Step 3, Quantize activations `cress_bitnet\models\bit_linear.py Line 135`;
-- Step 4 Generate Outputs `cress_bitnet\models\bit_linear.py Line 137 `;
+- Step 4 Generate Outputs (the output ***z*** is multiplied by the ***h*** vector) `cress_bitnet\models\bit_linear.py Line 137 `;
 
 
 
