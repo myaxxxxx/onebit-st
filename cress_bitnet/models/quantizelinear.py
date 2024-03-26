@@ -22,13 +22,9 @@ class QuantizeLinear(nn.Module):
         self.numpy_weight = weight.numpy()
         
         U, S, VT = svd(self.numpy_weight)
-        
-
-        
         U = torch.from_numpy(U)
         VT = torch.from_numpy(VT)
-        
-# 秩-1逼近向量
+# rank= 1
         U_rank_1_approximation = U[:, 0]
         Vt_rank_1_approximation = VT[0, :]
 
@@ -52,7 +48,7 @@ class QuantizeLinear(nn.Module):
         self.layer_norm = LayerNorm(in_features)
 
     def forward(self, input):
-        # 计算Sign(W)
+        # 
         sign_w = torch.sign(self.weight)
         x_g = input * self.g
         x_g = F.linear(x_g, sign_w, self.bias)       
@@ -86,7 +82,7 @@ def replace_linear_layers_with_quantize_recursive(module):
         if isinstance(child_module, nn.Linear) and not check_string(name,check_string_list ) :
 
         # if isinstance(child_module, nn.Linear) and ("output_projection" not in name):
-            # 保存原始权重参数
+            # 
             weight = child_module.weight.data
             
             bias = child_module.bias.data
@@ -94,10 +90,10 @@ def replace_linear_layers_with_quantize_recursive(module):
             quantize_linear = QuantizeLinear(weight, bias, child_module.out_features)
             setattr(module, name, quantize_linear)
         else:
-            # 递归调用，继续遍历子模块
+            # 
             replace_linear_layers_with_quantize_recursive(child_module)
 
 
-# 示例用法
+# 
 
 

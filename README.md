@@ -101,6 +101,15 @@ For the two additional trainable vectors, ***g*** and ***h***, we compare our me
 <img src="figures/svd_comparsion.png" width = "40%"/>
 </div>
 
+Core Code of SVD Implementation
+```
+# rank = 1
+U, S, VT = svd(self.numpy_weight)
+U = torch.from_numpy(U)
+VT = torch.from_numpy(VT)
+U_rank_1_approximation = U[:, 0] # g
+Vt_rank_1_approximation = VT[0, :] # h
+```
 
 #### Core Codes
 
@@ -233,7 +242,6 @@ USER_DIR=/workspace/tome/npy_tome_test
 
 HU_BERT=/workspace/s2t/npy_st/pretrained_model_save/hubert/hubert_base_ls960.pt
 MT_PRETRAINED_MODEL=/workspace/s2t/npy_st/pretrained_model_save/mt_model_save/mt.en-de.base.pt
-
 
 fairseq-train $data_dir --text-data $TEXT_DIR --tgt-lang $target \
   --user-dir $USER_DIR \
