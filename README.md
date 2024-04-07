@@ -14,6 +14,10 @@ Sign Value Constraint Decomposition for Efficient 1-Bit Quantization of Speech T
 </p>
 
 <p align="center">
+
+We're sorry that sometimes anonymous github cannot display README file. We convert the readme file into pdf format.
+
+
 (Under review).
 After the review period, we will open-source the code on our GitHub.
 </p>
